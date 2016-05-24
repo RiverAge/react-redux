@@ -49,7 +49,7 @@ describe('immutability', () => {
             let state = Map({
                 movies: List.of('Trainspotting', '28 Days Later')
             })
-            let netState = addMovie(state, 'Sunshine')
+            let nextState = addMovie(state, 'Sunshine')
             
             expect(nextState).to.equal(Map({
                 movies: List.of(

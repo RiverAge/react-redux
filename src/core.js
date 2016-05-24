@@ -1,4 +1,4 @@
-import {List} from 'immutable'
+import {List, Map} from 'immutable'
 
 export const INITIAL_STATE = Map()
 
@@ -8,11 +8,11 @@ export function setEntries(state, entries) {
 
 function getWinners(vote) {
     if (!vote) {
-        reutrn[]
+        return [] 
     }
     const [a, b] = vote.get('pair')
-    const aVotes = vote.getInt(['tally', a], 0)
-    const bVotes = vote.getInt(['tally', b], 0)
+    const aVotes = vote.getIn(['tally', a], 0)
+    const bVotes = vote.getIn(['tally', b], 0)
     if (aVotes > bVotes) {
         return [a]
     } else if (aVotes < bVotes) {
@@ -27,10 +27,10 @@ export function next(state) {
     if (entries.size === 1) {
         return state.remove('vote')
             .remove('entries')
-            .set('winner', entries.frist())
+            .set('winner', entries.first())
     } else {
         return state.merge({
-            vote: map({ pair: entries.take(2) }),
+            vote: Map({ pair: entries.take(2) }),
             entries: entries.skip(2)
         })
     }
