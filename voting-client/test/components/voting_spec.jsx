@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {
     renderIntoDocument,
-    scryRenderDOMComponentsWithTag
+    scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils'
 import Voting from '../../src/components/Voting'
 import {expect} from 'chai'
@@ -12,7 +12,7 @@ describe('Voting', () => {
        const component = renderIntoDocument(
            <Voting pair={["Trainspotting", "28 Days Later"]} />
        )
-       const buttons = scryRenderDOMComponentsWithTag(component, 'button')
+       const buttons = scryRenderedDOMComponentsWithTag(component, 'button')
        
        expect(buttons.length).to.equal(2)
        expect(buttons[0].textContent).to.equal('Trainspotting')
