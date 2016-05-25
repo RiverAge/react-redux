@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default React.creatClass({
+export default React.createClass({
     getPair: function () {
-        return this.props.piar || [];
+        return this.props.pair || [];
     },
     
     render: function () {
