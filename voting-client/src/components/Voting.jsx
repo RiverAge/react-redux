@@ -4,8 +4,10 @@ import Vote from './Vote'
 
 export default React.createClass({
     render: function () {
-        {this.props.winner ? 
-            <Winner ref="winner" winner="{this.props.winner}" /> :
-            <Vote {...this.props} /> }
+        return <div>
+            {this.props.winner ?
+                <Winner ref="winner" winner={this.props.winner} /> :
+                <Vote {...this.props} /> }
+        </div>
     }
 })
