@@ -11,19 +11,24 @@ import App from './components/App'
 import {VotingContainer} from './components/Voting'
 import {ResultsContainer} from './components/Results'
 
-const createStoreWithMiddle = applyMiddleware(
-    remoteActionMiddleware
-)(createStore)
+// const createStoreWithMiddle = applyMiddleware(
+//     remoteActionMiddleware
+// )(createStore)
 
-const store = createStoreWithMiddle(reducer)
+// const store = createStoreWithMiddle(reducer)
 
-const pair = ['Trainspotting', '28 Days Later']
+// const pair = ['Trainspotting', '28 Days Later']
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`)
 socket.on('state', state => 
     store.dispatch(setState(state))
 )
 
+const createStoreWithMiddle = applyMiddleware(
+    remoteActionMiddleware(socket)
+)(createStore)
+
+const store = createStoreWithMiddle(reducer)
 
 const routes = <Router component={App}>
     <Route path="/results" component={ResultsContainer} />
